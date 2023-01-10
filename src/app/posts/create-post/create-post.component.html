@@ -1,0 +1,55 @@
+<div class="post-container w-100 d-flex flex-col justify-content-center align-items-center">
+  <div class="card card-1">
+    <header class="d-flex align-items-center justify-content-center border-bottom">
+      <span class="h3">Create Post</span>
+      <button type="button" (click)="close()" class="btn btn-secondary rounded-circle">
+        <i class="bi bi-x-lg text-dark"></i>
+      </button>
+    </header>
+    <form [formGroup]="postForm" (ngSubmit)="submit()">
+      <input
+      type="text"
+      name="title" 
+      id="title"
+      class="form-control"
+      formControlName="title"
+      placeholder="title 15 characters max">
+      <textarea name="message" id="message" rows="5" placeholder="What's on your mind?" class="form-control" formControlName="body"></textarea>
+      <div *ngIf="!addMedia" class="card d-flex flex-row p-2 align-items-center justify-content-between">
+        <span class="h5">Add to your post</span>
+        <div>
+          <button type="button" (click)="openMedia()">
+            <i class="bi bi-file-image"></i>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="addMedia" class="overflow-auto card card-2">
+        <div class="border-bottom">
+          <label class="media-input align-items-center justify-content-center d-flex flex-column" for="media">
+            <button type="button" (click)="closeMedia()" class="btn btn-light rounded-circle">
+              <i class="bi bi-x-lg text-dark"></i>
+            </button>
+            <div class="add-icon rounded-circle border">
+              <i class="bi bi-file-earmark-plus icon"></i>
+            </div>
+            <span>
+              <span class="h5">Add Photos/Video</span>
+              <br>
+              <small>or Drag and Drop</small>
+            </span>
+          </label>
+          <input type="file" name="media" id="media" class="custom-file-input" (change)="onFileChange($event)">
+
+        </div>
+        <div *ngIf="media.length" class="media-preview">
+          <div *ngFor="let url of media">
+            <img [src]="url" alt="img preview" class="image">
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="postForm.invalid" class="post-btn btn btn-primary w-100">
+        Post
+      </button>
+    </form>
+  </div>
+</div>

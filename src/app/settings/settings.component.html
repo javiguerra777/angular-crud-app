@@ -1,0 +1,56 @@
+<div class="container-fluid h-100vh bg-dark text-light overflow-auto">
+  <header class="d-flex flex-row align-items-center justify-content-between">
+    <a routerLink="/home">
+      <i class="bi bi-arrow-left-short icon-35px"></i>
+    </a>
+    <p class="h2">Profile Settings</p>
+    <i class="bi bi-gear icon-35px"></i>
+  </header>
+  <!-- User Name -->
+  <div>
+    <p >Current Username: <strong class="text-decoration-underline">{{user.getUsername()}}</strong></p>
+    <form [formGroup]="nameForm" (ngSubmit)="changeProfile('NAME')" class="d-flex flex-column">
+      <label for="name">Change Username</label>
+      <div class="form-group mt-2">
+        <input class="form-control" type="text" name="name" id="name" placeholder="New Name: YoshiHoodie" formControlName="name">
+      </div>
+      <div class="form-group mt-2">
+        <button type="submit" [disabled]="nameForm.invalid" class="btn btn-primary"> Update Name</button>
+      </div>
+    </form>
+  </div>
+  <!-- Password -->
+  <div class="mt-5">
+    <form [formGroup]="passwordForm" (ngSubmit)="changeProfile('PASSWORD')"c class="d-flex flex-column">
+      <label for="password">Change Password</label>
+      <div class="form-group mt-2">
+        <input class="form-control" type="password" name="password" id="password" placeholder="password" formControlName="password">
+      </div>
+      <div class="mt-2">
+        <button type="submit" [disabled]="passwordForm.invalid" class="btn btn-primary"> Update Password</button>
+      </div>
+    </form>
+  </div>
+  <!-- Profile Picture -->
+  <div class="d-flex flex-column mt-5">
+    <span>Current Profile Picture</span>
+    <img [src]="profilePicture || fallBackImg" alt="profile-pic" class="profile-picture align-self-center">
+    <form [formGroup]="fileForm" (ngSubmit)="changeProfile('FILE')" class="d-flex flex-column">
+      <label class="mt-3" for="file">Change Picture</label>
+      <div class="mt-2 d-flex flex-row">
+          <input 
+          type="file"
+          accept="image/*" 
+          formControlName="image" 
+          class="custom-file-input"
+          (change)="onFileChange($event)">
+        <div *ngIf="imageUrl">
+          <img [src]="imageUrl" alt="image" class="profile-picture">
+        </div>
+      </div>
+      <div class="mt-2">
+        <button type="submit" [disabled]="fileForm.invalid" class="btn btn-primary">Update Image</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.card-1 {
+  position: absolute;
+  left: 0;
+  padding: 1rem 1rem 1rem 0;
+  border-right: solid 1px lightgray;
+  border-bottom: solid 1px lightgray;
+  border-bottom-right-radius: 1rem;
+  z-index: 4;
+  width: 20rem;
+  max-width: 20rem;
+  -webkit-box-shadow: 0px 12px 24px -1px #909090;
+  box-shadow: 0px 12px 24px -1px #909090;
+}
+
+.search {
+  margin-left: 1rem;
+  background-color: whitesmoke;
+  border-radius: 1rem;
+  width: 95%;
+}
+
+.clock {
+  padding: 0.2rem 0.5rem;
+}
+
+.p-reduce {
+  padding: 0.2rem 0.5rem;
+}
+
+.margin-top {
+  margin-top: 1rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+.ml {
+  margin-left: 0.5rem;
+}

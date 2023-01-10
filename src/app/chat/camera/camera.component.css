@@ -1,0 +1,35 @@
+.button {
+  border-radius: 5em;
+  padding: 5px 15px;
+}
+.cam-com {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: black;
+}
+.cam-btn {
+  font-size: 3em;
+}
+.cam-head {
+  position: fixed;
+  z-index: 4;
+}
+.cam-foot {
+  position: fixed;
+  z-index: 4;
+  bottom: 5em;
+}
+.wrapper {
+  display: flex;
+  background: #383838;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position:fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,34 @@
+<div class="d-flex flex-column bg-dark card-1">
+  <div class="d-flex ml">
+    <button type="button" class="btn btn-dark rounded-circle" (click)="closeSearch()">
+      <i class="bi bi-arrow-left"></i>
+    </button>
+    <form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="search-form">
+      <input type="text" name="search" id="search" class="search form-control" placeholder="Search Axelverse"
+        formControlName="searchVal">
+    </form>
+  </div>
+  <div *ngIf="searchVal!.value;" class="margin-top d-flex">
+    <div class="mr-1 ml-1">
+      <i class="bi bi-search"></i>
+    </div>
+    <span>Search for {{limitString(searchVal!.value)}}</span>
+  </div>
+  <div *ngIf="searches.length && !searchVal!.value" class="margin-top d-flex flex-column">
+    <div class="ml">Recent Searches</div>
+    <div *ngFor="let search of recentSearches()" class="margin-top d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <div class="ml-1 bg-light rounded-circle clock d-flex align-items-center justify-content-center">
+          <i class="bi bi-clock-fill text-secondary"></i>
+        </div>
+        <span class="ml-1">{{limitString(search)}}</span>
+      </div>
+      <button type="button" (click)="removeFromSearch(search)" class="btn btn-light rounded-circle p-reduce">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!searchVal!.value && !searches.length" class="align-self-center margin-top text-secondary">
+    No recent searches
+  </div>
+</div>

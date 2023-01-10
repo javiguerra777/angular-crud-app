@@ -1,0 +1,42 @@
+<div class="container-fluid bg-dark text-light h-100vh d-flex flex-column">
+  <header class="d-flex flex-row justify-content-between header align-items-center mt-2">
+    <div>
+      <a routerLink="/filters" class="text-decoration-none icon">
+        <i class="bi bi-arrow-left-short"></i>
+        <span>Filters</span>
+      </a>
+    </div>
+    <div>
+      <p class="h2">Messages</p>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="options-div">
+        <button type="button" class="rounded-circle text-primary border border-primary bg-transparent" (click)="toggleOptions()">
+          <i class="bi bi-three-dots"></i>
+        </button>
+      <div *ngIf="showOptions" class="card options bg-opacity-50 bg-dark d-flex flex-column">
+        <a routerLink="/settings" class="text-white align-self-center text-decoration-none">Settings</a>
+        <a routerLink="/users" class="text-white align-self-center text-decoration-none"> Friends</a>
+        <button class="text-white bg-transparent" (click)="logout()">Log Out</button>
+      </div>
+      </div>
+      <button type="button" class="border-0 bg-transparent text-primary" (click)="newMessage()">
+        <i class="bi bi-chat"></i>
+      </button>
+    </div>
+  </header>
+  <!-- Messages For Loop -->
+  <div class="overflow-auto messages">
+    <div *ngFor="let item of messages;" class="border-secondary border-bottom d-flex flex-row justify-content-between align-items-center pb-3">
+      <div class="d-flex flex-row align-items-center w-100 mt-3">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="profile picture" class="icon-picture">
+        <div class="w-100 d-flex flex-column">
+          <span class="">{{otherUser(item.users)}}</span>
+          <small class="text-secondary text">{{item.message[item.message.length -1].message}}</small>
+        </div>
+        <a [routerLink]="['/chat', item.id]" class="btn btn-primary nav-btn justify-self-center">Open Chat</a>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

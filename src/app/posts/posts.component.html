@@ -1,0 +1,90 @@
+<div class="bg-dark h-100vh container-fluid overflow-hidden">
+  <header class="d-flex text-light justify-content-between main-header">
+    <div *ngIf="!searchOpen" class="d-flex align-items-center">
+      <span class="h2">Axelverse</span>
+      <button type="button" (click)="openSearch()" class="btn btn-light rounded-circle">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+    <app-search-bar *ngIf="searchOpen" [open]="searchOpen" (close)="closeSearch($event)"></app-search-bar>
+    <div class="position-absolute plus-btn">
+      <button type="button" (click)="toggleCreateOpen()" class="btn btn-light rounded-circle" [ngClass]="{
+          'light-blue': createOpen
+        }">
+        <i class="bi bi-plus-lg"></i>
+      </button>
+    </div>
+    <div *ngIf="createOpen" class="menu card">
+      <span class="h2">Create</span>
+      <div class="d-flex">
+        <button type="button" (click)="openPostCloseTab()" class="btn btn-secondary rounded-circle">
+          <i class="bi bi-pencil-square"></i>
+        </button>
+        <div class="d-flex flex-col">
+          <span>
+            <strong class="h5">Post</strong>
+            <br>
+            <small class="text-secondary">Share a post on the feed</small>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="overflow-auto scrollable-content d-flex flex-column">
+    <div class="bg-light pt-1 pb-1 d-flex align-items-center rounded middle">
+      <a routerLink="/profile" class="">
+        <img [src]="userImage" alt="profile-picture" class="icon-picture ml-1">
+      </a>
+      <button type="button" (click)="openPostCreate()" class="text-dark mock-input m-2 p-2 rounded border-0">
+        <span>What's on your mind?</span>
+      </button>
+    </div>
+    <div *ngFor="let post of posts" class="bg-white mt-2 mb-2 card d-flex flex-col middle">
+      <header class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center ml-1">
+          <a *ngIf="isUsersPost(post.user.id)" routerLink="/profile">
+            <img [src]="post.user.image" alt="profile pic" class="icon-picture">
+          </a>
+          <a *ngIf="!isUsersPost(post.user.id)" [routerLink]="['/user', post.user.id]">
+            <img [src]="post.user.image" alt="profile pic" class="icon-picture">
+          </a>
+          <div class="ml">
+            <strong class="h5">
+              {{post.user.username}}
+            </strong>
+          </div>
+        </div>
+        <div class="h3">{{post.title}}</div>
+        <div *ngIf="isUsersPost(post.user.id)">
+          <button type="button" (click)="openUpdate(post.id)" class="btn btn-success">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </div>
+        <div *ngIf="!isUsersPost(post.user.id)">
+          <button>
+            ...
+          </button>
+        </div>
+      </header>
+      <div class="post-body">{{post.body}}</div>
+      <app-post-footer [postId]="post.id"></app-post-footer>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+<!-- Pop Up Modules -->
+<app-update-post
+ *ngIf="updatePostOpen"
+  [open]="updatePostOpen" 
+  [id]="activePostId"
+  (post)="updatePost($event)"
+  (close)="closeUpdate($event)" 
+  (newId)="newActiveId($event)"></app-update-post>
+<app-create-post
+ [posts]="posts" 
+ *ngIf="createPostOpen" 
+ [open]="createPostOpen"
+ (closeForm)="closeForm($event)"></app-create-post>

@@ -1,0 +1,17 @@
+<footer class="d-flex justify-content-evenly mt-2 border-top">
+  <button type="button" (click)="toggleLike()" class="btn btn-light">
+    <i *ngIf="liked" class="bi bi-hand-thumbs-up-fill text-primary"></i>
+    <i *ngIf="!liked" class="bi bi-hand-thumbs-up text-secondary"></i>
+    <span class="m-1" [ngClass]="{
+      'text-primary': liked
+    }">Like</span>
+  </button>
+  <a [routerLink]="['/post', postId]" class="btn btn-light">
+    <i class="bi bi-chat-square-fill"></i>
+    Comment
+  </a>
+  <button type="button" class="btn btn-light">
+    <i class="bi bi-box-arrow-right"></i>
+    Share
+  </button>
+</footer>

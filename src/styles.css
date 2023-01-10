@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.h-100vh {
+  height: 100vh;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.icon-picture {
+  width: 3em;
+  height: 3em;
+  border-radius: 3em;
+  margin-right: 0.5em;
+}
+.mr {
+  margin-right: 0.3em;
+}
+.icon {
+  font-size: 25px;
+}
+.icon-35px {
+  font-size: 35px;
+}
+.pointer {
+  cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 1em;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

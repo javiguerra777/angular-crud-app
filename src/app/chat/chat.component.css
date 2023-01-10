@@ -1,0 +1,64 @@
+.user {
+  background-color: dodgerblue;
+  align-self: flex-end;
+}
+.user-container {
+  align-self: flex-end;
+}
+.other {
+  background-color: #343434;
+}
+.msg {
+  width: fit-content;
+  border-radius: 1em;
+  max-width: 20em;
+  padding: 10px;
+  word-wrap: break-word;
+  margin-top: 0.2em;
+}
+.container-msg {
+    width: fit-content;
+    max-width: 20em;
+    word-wrap: break-word;
+}
+.delete:hover {
+  font-style: italic;
+}
+.msg-form {
+  border-radius: 1em;
+  width: 30em;
+}
+.msg-input {
+  height: 100%;
+  width: 100%;
+}
+.btn {
+  padding: 0px 5px;
+}
+.arrow-up {
+  font-size: 15px;
+}
+.chat-header {
+  height: 10vh;
+}
+.chat-main {
+ height: 85vh;
+}
+.chat-footer {
+  margin-bottom: 5px;
+}
+.ml {
+  margin-left: 1em;
+}
+.ml-item {
+  margin-left: 0.5em
+}
+.selfie {
+  width: 100px;
+  height: 100px;
+}
+.img {
+  width: 15em;
+  height: 10em;
+  border-radius: 1em;
+}

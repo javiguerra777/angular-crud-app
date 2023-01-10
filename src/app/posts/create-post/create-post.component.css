@@ -1,0 +1,67 @@
+.post-container {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+.btn-secondary {
+  background-color: lightgray;
+  right: 1rem;
+}
+.btn-light {
+  background-color: white;
+  border: solid 1px lightgray;
+  top: 1.3rem;
+  right: 1.3rem;
+}
+.btn-secondary, .btn-light {
+  position: absolute;
+}
+
+.card-1 {
+  width: 30rem;
+  height: auto;
+  padding: 1rem;
+}
+.card-2 {
+  padding: 1rem;
+  height: 15rem;
+}
+.post-btn {
+  margin-top: 1rem;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+.custom-file-input {
+  visibility: hidden;
+}
+.media-input {
+  background-color: whitesmoke;
+  height: 12rem;
+}
+.media-input:hover {
+  cursor: pointer;
+}
+.media-preview {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.add-icon {
+  background-color: lightgray;
+  padding: 0.2rem 0.5rem;
+}
+.image {
+  height: 10rem;
+  width: 10rem;
+}
+.form-control {
+  margin-bottom: 0.5rem;
+}

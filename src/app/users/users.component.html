@@ -1,0 +1,65 @@
+<div class="container-fluid h-100vh bg-dark overflow-auto text-light d-flex flex-column">
+  <header class="d-flex flex-row align-items-center justify-content-between main-header w-100 bg-dark">
+      <a routerLink="/home">
+        <i class="bi bi-arrow-left-short icon-35px"></i>
+      </a>
+      <p class="display-4 justify-self-center p-mid">Friends List</p>
+      <div></div>
+  </header>
+  <div class="rel">
+    <section class="align-self-center">
+      <button type="button" class="btn btn-primary mr" (click)="toggleDisplay(true)">Friends</button>
+      <button type="button" class="btn btn-primary" (click)="toggleDisplay(false)">Add Friends</button>
+    </section>
+    <!-- Friends List -->
+    <div *ngIf="showFriends" class="d-flex flex-column">
+      <section class="d-flex flex-row mt-2 align-self-center">
+        <div class="d-flex flex-row">
+          <i class="bi bi-search bg-secondary pr-pl"></i>
+          <input type="text" class="search-input" placeholder="Search Friends" [ngModel]="searchFriends" (ngModelChange)="filterFriends($event)">
+        </div>
+      </section>
+      <!-- For loop friends -->
+      <div *ngFor="let item of filterFriends(searchFriends);" class="d-flex flex-row align-items-center mt-3 mb-3 left">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="profile picture" class="icon-picture">
+        <div class="mr d-flex flex-column">
+          <span>{{item.name}}</span>
+          <small> Personal Catchphrase: <strong>{{item.company.catchPhrase}}</strong></small>
+          <small>Works for: <span class="text-decoration-underline">{{item.company.name}}</span></small>
+        </div>
+        <div>
+          <button type="button" class="btn btn-danger text-light border border-light " (click)="removeUser(item.id)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Show Users to add to friend list -->
+  <div class="rel">
+    <div *ngIf="!showFriends" class="d-flex flex-column">
+      <section class="d-flex flex-row mt-2 align-self-center">
+        <div class="d-flex flex-row">
+          <i class="bi bi-search bg-secondary pr-pl"></i>
+          <input type="text" class="search-input" placeholder="Search Users" [ngModel]="searchUsers" (ngModelChange)="filterUsers($event)">
+        </div>
+      </section>
+      <!-- For Loop of users -->
+      <div *ngFor="let item of filterUsers(searchUsers);" class="d-flex flex-row align-items-center mb-3 mt-3 left">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="profile picture" class="icon-picture">
+        <div class="mr d-flex flex-column">
+          <span>{{item.name}}</span>
+          <small> Personal Catchphrase: <strong>{{item.company.catchPhrase}}</strong></small>
+          <small>Works for: <span class="text-decoration-underline">{{item.company.name}}</span></small>
+        </div>
+        <i *ngIf="existingFriend(item.id)" class="bi bi-check2-circle"></i>
+        <div *ngIf="!existingFriend(item.id)">
+          <button type="button" (click)="addUser(item)" class="btn btn-transparent text-light rounded-circle border border-light">
+            <i class="bi bi-person-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>

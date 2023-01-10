@@ -1,0 +1,53 @@
+<div class="container-fluid h-100vh bg-dark text-light d-flex flex-column">
+<header class="d-flex flex-row justify-content-between mt-2 align-items-center chat-header">
+  <a routerLink="/home">
+    <i class="bi bi-arrow-left-short icon-35px"></i>
+  </a>
+  <p class="h2">Messages</p>
+  <button type="button" (click)="call()" class="btn btn-transparent text-primary">
+    <i class="bi bi-telephone icon"></i>
+  </button>
+</header>
+<div class="d-flex flex-column overflow-auto chat-main">
+  <div *ngFor="let item of chat.message" class="d-flex flex-column container-msg mt-2" [ngClass]="{
+    'user-container': item.from === user.getId()
+  }">
+    <div *ngIf="item.image">
+      <img [src]="item.image" alt="image" class="img">
+    </div>
+    <div class="d-flex flex-column msg" [ngClass]="{
+      'user': item.from === user.getId(), 
+      'other': item.from !== user.getId()
+    }">
+      <span>{{item.message}}</span>
+      <div *ngIf="item.from === user.getId()" class="d-flex flex-row justify-content-end">
+        <small class="text-decoration-underline pointer text-dark delete" (click)="removeMessage(item.id)">Delete</small>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="chat-footer d-flex flex-column w-100">
+  <div class="d-flex flex-row ml">
+    <button type="button" class="btn btn-light" (click)="openCamera()">
+      <i class="bi bi-camera"></i>
+    </button>
+    <button type="button" class="btn btn-danger ml-item">
+      <i class="bi bi-youtube"></i>
+    </button>
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="msg-form border border-secondary d-flex flex-row align-items-center ml-item">
+      <input class="border-0 msg-input bg-transparent text-light" type="text" name="message" id="message" required placeholder="Send Message" formControlName="message">
+      <button type="submit" [disabled]="messageForm.invalid" class="btn bg-primary circle border-white rounded-circle ml-item">
+        <i class="bi bi-arrow-up text-white arrow-up"></i>
+      </button>
+    </form>
+  </div>
+  <div *ngIf="selfie">
+    <button type="button" (click)="removeImage()">
+      <i class="bi bi-x"></i>
+    </button>
+    <img [src]="selfie.imageAsDataUrl" alt="selfie" class="selfie">
+  </div>
+</footer>
+</div>
+
+<app-camera *ngIf="cameraOpen" [cameraOpen]="cameraOpen" (closeCamera)="closeCamera($event)" (pictureTaken)="handleImage($event)"></app-camera>

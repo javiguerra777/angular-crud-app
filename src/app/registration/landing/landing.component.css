@@ -1,0 +1,8 @@
+.f-width {
+  width: 35em;
+}
+@media screen and (max-width: 700px) {
+  .f-width {
+    width: 90%;
+  }
+}

@@ -1,0 +1,33 @@
+<div class="cam-com container-fluid h-100vh text-light">
+  <header class="w-100 d-flex flex-row align-items-center cam-head">
+    <button type="button" class="btn btn-transparent rounded-circle" (click)="click()">
+      <i class="bi bi-x text-light icon"></i>
+    </button>
+    <div>
+      <button type="button" (click)="showNextWebcam(true)">
+        <i class="bi bi-arrow-repeat"></i>
+      </button>
+    </div>
+  </header>
+  <div class="wrapper" (window:resize)="onResize($event)">
+    <webcam [height]="height"
+    [width]="width"
+    [trigger]="triggerObservable"
+    (imageCapture)="handleImage($event)"
+    *ngIf="showWebcam"
+    [allowCameraSwitch]="allowCameraSwitch" 
+    [switchCamera]="nextWebcamObservable" 
+    [videoOptions]="videoOptions" 
+    (cameraSwitched)="cameraWasSwitched($event)"
+    (initError)="handleInitError($event)"></webcam>
+  </div>
+<footer class="w-100 d-flex flex-row justify-content-center cam-foot">
+  <button type="button" class="btn btn-secondary border-0 button" (click)="triggerSnapShot()">
+    <i class="bi bi-circle-fill text-white cam-btn"></i>
+  </button>
+</footer>
+<h4 *ngIf="errors.length > 0">Messages:</h4>
+<ul *ngFor="let error of errors">
+  <li>{{error | json}}</li>
+</ul>
+</div>

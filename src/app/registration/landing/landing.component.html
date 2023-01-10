@@ -1,0 +1,29 @@
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100vh">
+  <div class="bg-dark card p-3 f-width">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-light d-flex flex-column">
+      <h1 class="align-self-center">Login To Account</h1>
+      <div class="form-group mt-3">
+        <div *ngIf="name?.invalid && name?.value.length" class="alert alert-danger">
+          <div *ngIf="name?.errors?.['minlength']">
+            Name must be 5 characters long
+          </div>
+        </div>
+        <label for="name">Username<span class="text-danger w-50">*</span></label>
+        <input type="text" id="name" name="name" class="form-control" required minlength="5" formControlName="name" placeholder="Enter Name">
+      </div>
+      <div class="form-group mt-3">
+        <div *ngIf="password?.invalid && password?.value.length" class="alert alert-danger">
+          <div>
+            Password must be 10 characters
+          </div>
+        </div>
+        <label for="password">Password <span class="text-danger">*</span></label>
+        <input type="password" id="password" name="password" class="form-control" required minlength="10" formControlName="password" placeholder="Password">
+      </div>
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary mt-3">Submit</button>
+    </form>
+    <div class="mt-2">
+      <p class="text-light">Need an account? <span><a routerLink="/signup">Sign Up Here</a></span></p>
+    </div>
+  </div>
+</div>

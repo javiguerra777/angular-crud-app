@@ -1,0 +1,22 @@
+.body {
+  height: 95vh;
+}
+.header {
+  position: relative;
+  z-index:2;
+}
+.header-img {
+  height: 15rem;
+  width: 100%;
+}
+.profile-picture {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 5rem;
+  position: relative;
+  z-index: 4;
+}
+.main-content {
+  position: relative;
+  bottom: 3rem;
+}

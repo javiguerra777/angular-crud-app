@@ -1,0 +1,56 @@
+.scrollable-content {
+  height: 87vh;
+  width: 98vw;
+}
+
+.mock-input {
+  background-color: rgb(211, 211, 211);
+  width: 90%;
+}
+.mock-input:hover {
+  background-color: rgba(211, 211, 222);
+}
+.h2 {
+  margin-right: 1rem;
+}
+.menu {
+  position: fixed;
+  right: 1rem;
+  top: 2.5rem;
+  background-color: white;
+  color: black;
+  width: 20rem;
+  z-index: 2;
+}
+
+.light-blue {
+  background-color: lightblue;
+}
+
+.main-header {
+  height: 8vh;
+}
+
+.plus-btn {
+  right: 1rem;
+  top: 0.2rem;
+}
+
+.margin-top {
+  margin-top: 1rem;
+}
+.mr-1 {
+  margin-right: 1rem;
+}
+.ml-1 {
+  margin-left: 1rem;
+}
+.post-body {
+  align-self: center;
+  width: 97%;
+}
+
+.middle {
+  width: 40rem;
+  align-self: center;
+}
