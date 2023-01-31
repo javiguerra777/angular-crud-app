@@ -21,13 +21,18 @@ export class SignupComponent implements OnInit {
       Validators.minLength(10),
     ])
   })
+  error = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, private register: RegistrationService) { }
 
   ngOnInit(): void {
+    if (this.user.getToken()) {
+      this.router.navigateByUrl('/home')
+    }
   }
   
   submit () {
+    this.signUpForm.disable();
     this.register.signUp({
       username: this.username?.value.trim(),
       password: this.password?.value.trim()
@@ -38,11 +43,8 @@ export class SignupComponent implements OnInit {
           this.router.navigateByUrl('/home')
         },
         error: error => {
-          console.log(error)
-          this.signUpForm.setValue({
-            username: '',
-            password: ''
-          })
+          this.error = error.message;
+          this.signUpForm.enable();
         }
       })
   }

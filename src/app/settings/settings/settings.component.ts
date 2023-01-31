@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { User } from '../store/user';
-import { UserService } from '../services/user.service';
+import { User } from '../../store/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-settings',

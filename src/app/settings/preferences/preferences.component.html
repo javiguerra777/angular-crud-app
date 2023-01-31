@@ -1,0 +1,19 @@
+<div class="container-fluid h-100vh bg-dark text-light overflow-auto">
+  <h1>Code Play Area for Devs</h1>
+  <div class="card text-dark d-flex justify-content-center align-items-center" cdkDrag>
+    <span>{{text}}</span>
+    <button type="button" (click)="toggleEdit()" class="position-absolute top-right rounded-circle btn btn-secondary">
+      <i class="bi bi-three-dots-vertical"></i>
+    </button>
+    <div *ngIf="openEdit" class="position-absolute form-container edit-card rounded">
+      <form (ngSubmit)="submit()">
+        <label for="newtext" class="d-flex flex-column">
+          <span>New Message:</span>
+          <textarea name="newtext" id="newtext" class="newtext">
+            Your New Message
+          </textarea>
+        </label>
+      </form>
+    </div>
+  </div>
+</div>

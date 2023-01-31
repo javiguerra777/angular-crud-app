@@ -8,7 +8,7 @@ interface Message {
   id: number,
   from: string | number,
   message: string,
-  image?: string,
+  image?: any[],
 }
 
 interface Chat {
@@ -25,13 +25,14 @@ export class ChatComponent implements OnInit {
   chat!: Chat;
   cameraOpen = false;
   user: User = new User();
-  selfie!: any;
+  images: any[] = [];
+  openImg = false;
   messageForm = this.formBuilder.group({
     message: new FormControl('', [
       Validators.required,
       Validators.minLength(1)
     ]),
-  })
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +45,7 @@ export class ChatComponent implements OnInit {
     const found = chats.find(chat => chat.id === chatIdFromRoute)
     if (found) {
       this.chat = found;
-      // console.log(this.chat)
+      console.log(this.chat)
     }
   }
 
@@ -52,7 +53,6 @@ export class ChatComponent implements OnInit {
     return this.messageForm.get('message')
   }
   sendMessage() {
-    console.log(this.selfie)
     const date = Date.now()
     const randNum = Math.floor(Math.random() * 100000)
     const uniqueId = date + randNum;
@@ -60,12 +60,14 @@ export class ChatComponent implements OnInit {
       id: uniqueId,
       from: this.user.getId() || '',
       message: this.message?.value,
-      image: this.selfie?.imageAsDataUrl
-    })
+      image: this.images
+    });
+    console.log(this.images)
     this.messageForm.setValue({
       message: '',
     })
-    this.selfie = null;
+    this.images = [];
+    this.openImg = false;
   }
 
   removeMessage(id: number): boolean | void {
@@ -84,14 +86,44 @@ export class ChatComponent implements OnInit {
   closeCamera(option: boolean) {
     this.cameraOpen = option;
   }
-
-  handleImage(image: any) {
-    // console.log(image);
-    this.selfie = image;
+  onFileChange(file: any) {
+    console.log('file to push:', file);
+    const date = Date.now();
+    const randNum = Math.floor(Math.random() * 10000);
+    const id = date + randNum;
+    const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.images.push({url: reader.result as string, id})
+      }
   }
 
-  removeImage() {
-    this.selfie = null;
+  addImage(e: any) {
+    if(e.target.files[0]){
+      const date = Date.now();
+      const randNum = Math.floor(Math.random() * 10000);
+      const id = date + randNum;
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = () => {
+        this.images.push({url: reader.result as string, id})
+      }
+      e.target.value = '';
+    }
+  }
+  handleImage(image: any) {
+    const date = Date.now();
+    const randNum = Math.floor(Math.random() * 10000);
+    const id = date + randNum;
+    this.images.push({...image, id});
+  }
+
+  removeImage(image: any) {
+    this.images = this.images.filter((img) => img.id != image.id)
+  }
+  
+  toggleImg() {
+    this.openImg = !this.openImg;
   }
 
 }

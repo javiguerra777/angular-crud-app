@@ -5,10 +5,11 @@ import { LandingComponent } from './registration/landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { UsersComponent } from './users/users.component';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent } from './settings/settings/settings.component';
 import { SignupComponent } from './registration/signup/signup.component';
 import { PostsComponent } from './posts/posts.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PreferencesComponent } from './settings/preferences/preferences.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [LocalStorageGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [LocalStorageGuard] },
   { path: 'posts', component: PostsComponent, canActivate: [LocalStorageGuard] },
-  {path: 'profile', component: ProfileComponent, canActivate: [LocalStorageGuard]}
+  { path: 'profile', component: ProfileComponent, canActivate: [LocalStorageGuard]},
+  { path: 'preferences', component: PreferencesComponent, canActivate: [LocalStorageGuard]},
 ]
 
 @NgModule({

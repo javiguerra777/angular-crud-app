@@ -27,6 +27,11 @@ button:hover {
 .pointer {
   cursor: pointer;
 }
+.error {
+  position: absolute;
+  top: 1rem;
+}
+/* scrollbar */
 
 /* width */
 ::-webkit-scrollbar {

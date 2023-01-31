@@ -21,6 +21,7 @@ export class LandingComponent implements OnInit {
       Validators.minLength(10)
     ]),
   })
+  error = '';
   
 
   constructor(
@@ -36,7 +37,7 @@ export class LandingComponent implements OnInit {
   }
 
   onSubmit(): void | boolean {
-    console.log('form value', this.form.value)
+    this.form.disable()
     this.registration.login({
       username: this.name?.value,
       password: this.password?.value
@@ -47,11 +48,11 @@ export class LandingComponent implements OnInit {
           this.router.navigateByUrl('/home')
         },
         error: err => {
-          console.log(err.message)
-          this.form.setValue({
-            name: '',
+          this.error = err.message;
+          this.form.patchValue({
             password: '',
           })
+          this.form.enable()
         }
     })
   }

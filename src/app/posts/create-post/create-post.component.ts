@@ -41,6 +41,7 @@ export class CreatePostComponent implements OnInit {
       }
       reader.readAsDataURL(file);
       console.log(this.media)
+      event.target.value = '';
     }
   }
 

@@ -12,27 +12,34 @@
   <div *ngFor="let item of chat.message" class="d-flex flex-column container-msg mt-2" [ngClass]="{
     'user-container': item.from === user.getId()
   }">
-    <div *ngIf="item.image">
-      <img [src]="item.image" alt="image" class="img">
+    <div *ngIf="item.image?.length" class="mr-2" [ngClass]="{
+      'align-self-end': item.from === user.getId()
+    }" >
+      <div *ngFor="let img of item.image">
+        <img [src]="img.url || img._imageAsDataUrl" alt="image" class="img">
+      </div>
     </div>
-    <div class="d-flex flex-column msg" [ngClass]="{
+    <div class="d-flex flex-column msg position-relative" [ngClass]="{
       'user': item.from === user.getId(), 
       'other': item.from !== user.getId()
     }">
       <span>{{item.message}}</span>
-      <div *ngIf="item.from === user.getId()" class="d-flex flex-row justify-content-end">
-        <small class="text-decoration-underline pointer text-dark delete" (click)="removeMessage(item.id)">Delete</small>
+      <div *ngIf="item.from === user.getId()" class="position-absolute delete-pos">
+        <i class="bi bi-trash-fill pointer bg-danger p-1 rounded-circle" (click)="removeMessage(item.id)"></i>
       </div>
     </div>
   </div>
 </div>
-<footer class="chat-footer d-flex flex-column w-100">
+<footer class="chat-footer d-flex flex-column w-100 pt-2">
   <div class="d-flex flex-row ml">
     <button type="button" class="btn btn-light" (click)="openCamera()">
       <i class="bi bi-camera"></i>
     </button>
     <button type="button" class="btn btn-danger ml-item">
       <i class="bi bi-youtube"></i>
+    </button>
+    <button type="button" class="ml-item rounded btn btn-success" (click)="toggleImg()">
+      <i class="bi bi-card-image"></i>
     </button>
     <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="msg-form border border-secondary d-flex flex-row align-items-center ml-item">
       <input class="border-0 msg-input bg-transparent text-light" type="text" name="message" id="message" required placeholder="Send Message" formControlName="message">
@@ -41,11 +48,25 @@
       </button>
     </form>
   </div>
-  <div *ngIf="selfie">
-    <button type="button" (click)="removeImage()">
-      <i class="bi bi-x"></i>
-    </button>
-    <img [src]="selfie.imageAsDataUrl" alt="selfie" class="selfie">
+  <div *ngIf="images?.length || openImg">
+    <div class="d-flex flex-column w-100 justify-content-center upload-container align-items-center">
+      <label for="upload" class="upload-label p-2 rounded d-flex flex-column align-items-center" appDropFile (filesChangeEmitter)="onFileChange($event)">
+        <span>Drag and Drop file here</span>
+        <span>or</span>
+        <span class="btn rounded btn-primary">Browse for File</span>
+        <input type="file" id="upload" class="upload" (change)="addImage($event)">
+      </label>
+    </div>
+    <div class="w-100 d-flex">
+      <div *ngFor="let image of images" class="d-flex flex-row">
+        <div class="bg-dark position-relative">
+          <img [src]="image._imageAsDataUrl || image.url" alt="selfie" class="selfie">
+          <button type="button" (click)="removeImage(image)" class="position-absolute-btn rounded-circle">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 </div>

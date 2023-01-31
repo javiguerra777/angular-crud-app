@@ -1,9 +1,11 @@
 .user {
   background-color: dodgerblue;
   align-self: flex-end;
+  margin: 0 0 2rem 0;
 }
 .user-container {
   align-self: flex-end;
+  margin-right: 0.5rem;
 }
 .other {
   background-color: #343434;
@@ -20,9 +22,6 @@
     width: fit-content;
     max-width: 20em;
     word-wrap: break-word;
-}
-.delete:hover {
-  font-style: italic;
 }
 .msg-form {
   border-radius: 1em;
@@ -61,4 +60,23 @@
   width: 15em;
   height: 10em;
   border-radius: 1em;
+}
+.upload {
+  display: none;
+}
+.upload-label {
+  color: black;
+  cursor: pointer;
+}
+.upload-container {
+  height: 10rem;
+}
+.position-absolute-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.delete-pos {
+  top: -15px;
+  right: -5px;
 }

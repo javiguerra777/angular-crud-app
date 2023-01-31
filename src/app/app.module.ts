@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './registration/landing/landing.component';
 import { HomeComponent } from './home/home.component';
@@ -8,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent } from './settings/settings/settings.component';
 import { CameraComponent } from './chat/camera/camera.component';
 import { WebcamModule } from 'ngx-webcam';
 import { SignupComponent } from './registration/signup/signup.component';
@@ -19,6 +20,8 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UpdatePostComponent } from './posts/update-post/update-post.component';
 import { SearchBarComponent } from './posts/search-bar/search-bar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DropFileDirective } from './directives/drop-file.directive';
+import { PreferencesComponent } from './settings/preferences/preferences.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { ProfileComponent } from './profile/profile.component';
     CreatePostComponent,
     UpdatePostComponent,
     SearchBarComponent,
-    ProfileComponent
+    ProfileComponent,
+    DropFileDirective,
+    PreferencesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     HttpClientModule,
     WebcamModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

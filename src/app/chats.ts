@@ -7,13 +7,16 @@ export const chats = [
         id: 1,
         from: 'steakhouse',
         message: 'hi',
-        image: 'https://media.istockphoto.com/id/1370772148/photo/track-and-mountains-in-valle-del-lago-somiedo-nature-park-asturias-spain.jpg?s=612x612&w=0&k=20&c=QJn62amhOddkJSbihcjWKHXShMAfcKM0hPN65aCloco='
       },
       {
         id: 2,
-        from: 12,
+        from: 'steakhouse',
         message: 'sukiyaki steak',
-        image: 'https://media.istockphoto.com/id/1370772148/photo/track-and-mountains-in-valle-del-lago-somiedo-nature-park-asturias-spain.jpg?s=612x612&w=0&k=20&c=QJn62amhOddkJSbihcjWKHXShMAfcKM0hPN65aCloco='
+      },
+      {
+        id: 3,
+        from: 1,
+        message: 'Testing CSS'
       }
       ] 
   },
