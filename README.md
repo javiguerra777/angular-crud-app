@@ -3,7 +3,7 @@
 Read below to run a developement server or tests for this web application. This is a test application to understand the basics of how Angular runs under the hood.
 
 ## Steps to Start Application
-1. install node using this website [Node.js Website](https://nodejs.dev/en/download/)
+1. install node using this website [Node.js Website](https://nodejs.dev/en/download/){target:"_blank"}
 2. Install dependencies running npm install ``` npm install ```
 
 Then follow the steps below to utilize the Angular CLI.
